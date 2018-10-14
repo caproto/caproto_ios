@@ -14,7 +14,7 @@ class SpeechIOC(PVGroup):
     speak = pvproperty(value=['text'],
                        doc='Text to speak',
                        string_encoding='utf-8')
-    rate = pvproperty(value=[1.0],
+    rate = pvproperty(value=[0.5],
                       doc='Normalized speech rate')
     speaking = pvproperty(value=[0])
 
