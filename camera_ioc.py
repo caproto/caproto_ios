@@ -19,11 +19,12 @@ class CameraIOC(PVGroup):
     async def acquire(self, instance, value):
         image = photos.capture_image()
         # resize to (width, height)
+        print(image)
         image = image.resize((image_width, image_height))
+        print(image, np.asarray(image).shape)
         # and convert to grayscale
-        image = image.convert('LA')
-        image_array = np.asarray(image).flatten().astype(np.uint32)
-        await self.image.write(image_array)
+        image_array = np.dot(np.asarray(image)[..., :3], [0.299, 0.587, 0.114])
+        await self.image.write(image_array.flatten().astype(np.uint32))
 
 
 if __name__ == '__main__':
