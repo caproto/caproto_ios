@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import caproto
 from caproto.server import pvproperty, PVGroup, ioc_arg_parser, run
 import time
 import location
@@ -11,7 +12,8 @@ class LocationIOC(PVGroup):
                              doc='Latitude, longitude')
     location = pvproperty(value=[''],
                           doc='Street address information',
-                          max_length=1000)
+                          max_length=1000,
+                          dtype=caproto.ChannelType.CHAR)
 
     @authorized.startup
     async def authorized(self, instance, async_lib):
@@ -40,7 +42,7 @@ class LocationIOC(PVGroup):
 
 if __name__ == '__main__':
     ioc_options, run_options = ioc_arg_parser(
-        default_prefix='motion:',
+        default_prefix='location:',
         desc="iOS location data IOC")
     ioc = LocationIOC(**ioc_options)
     run(ioc.pvdb, **run_options)
