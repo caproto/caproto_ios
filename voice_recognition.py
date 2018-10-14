@@ -18,7 +18,7 @@ class VoiceRecognitionIOC(PVGroup):
 
     @start.startup
     async def start(self, instance, async_lib):
-        self.async_lib = async_lib
+        self.async_lib = async_lib.library
 
     @start.putter
     async def start(self, instance, value):
