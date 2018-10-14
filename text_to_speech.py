@@ -25,7 +25,7 @@ class SpeechIOC(PVGroup):
         language = self.language.value[0]
         rate = self.rate.value[0]
         print(f'Saying {value!r} in language {language} at rate {rate}')
-        speech.say(value, language=language, rate=rate)
+        speech.say(value, language, rate)
 
     @speaking.startup
     async def speaking(self, instance, async_lib):
