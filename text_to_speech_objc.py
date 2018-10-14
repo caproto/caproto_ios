@@ -23,8 +23,8 @@ class SpeechIOC(PVGroup):
                       doc='Normalized speech rate')
     speaking = pvproperty(value=[0])
 
-    @speech.startup
-    async def speech(self, instance, async_lib):
+    @speak.startup
+    async def speak(self, instance, async_lib):
         self.voices = AVSpeechSynthesisVoice.speechVoices()
         self.synthesizer = AVSpeechSynthesizer.new()
 
