@@ -10,7 +10,7 @@ class LocationIOC(PVGroup):
                             doc='Authorized access to location data')
     coordinates = pvproperty(value=[0., 0.],   # enum TODO
                              doc='Latitude, longitude')
-    location = pvproperty(value=[''],
+    location = pvproperty(value=['*' * 1000],
                           doc='Street address information',
                           max_length=1000,
                           dtype=caproto.ChannelType.CHAR)
