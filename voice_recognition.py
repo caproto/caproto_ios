@@ -24,11 +24,14 @@ class VoiceRecognitionIOC(PVGroup):
     async def start(self, instance, value):
         duration, = self.duration.value
 
-        rec = sound.Recorder("recorded.m4a")
-        rec.record()
-        await self.async_lib.sleep(duration)
+        rec = sound.Recorder('recorded.m4a')
+        rec.record(duration)
+        for i in range(10):
+            print('Recording?', rec.recording)
+            await self.async_lib.sleep(duration / 10.)
         rec.stop()
-        result = speech.recognize("recorded.m4a")
+        await self.async_lib.sleep(0.1)
+        result = speech.recognize('recorded.m4a')
         print('Heard:', result)
         await self.text.write([str(result)])
 
