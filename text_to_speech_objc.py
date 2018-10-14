@@ -36,8 +36,9 @@ class SpeechIOC(PVGroup):
         language = self.language.value[0]
         voice = AVSpeechSynthesisVoice.voiceWithLanguage_(language)
         for voice in self.voices:
-            print(voice)
-            if 'Enhanced' in str(voice.description()):
+            if (f'Language: {language}' in str(voice) and
+                    'compact' not in str(voice)):
+                print('Chose voice:', voice)
                 break
 
         self.voice = voice
