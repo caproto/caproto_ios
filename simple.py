@@ -11,6 +11,6 @@ class SimpleIOC(PVGroup):
 if __name__ == '__main__':
     ioc_options, run_options = ioc_arg_parser(
         default_prefix='simple:',
-        desc="Run an IOC with two simple, uncoupled, readable/writable PVs.")
+        desc="A simple test")
     ioc = SimpleIOC(**ioc_options)
     run(ioc.pvdb, **run_options)
